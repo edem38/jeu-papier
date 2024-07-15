@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pierre Papier Ciseaux</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        button {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pierre Papier Ciseaux</h1>
+    <div>
+        <button onclick="jouer('pierre')">Pierre</button>
+        <button onclick="jouer('papier')">Papier</button>
+        <button onclick="jouer('ciseaux')">Ciseaux</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        function jouer(choixJoueur) {
+            const choix = ['pierre', 'papier', 'ciseaux'];
+            const choixOrdinateur = choix[Math.floor(Math.random() * 3)];
+            
+            let resultat;
+            if (choixJoueur === choixOrdinateur) {
+                resultat = "Égalité !";
+            } else if (
+                (choixJoueur === 'pierre' && choixOrdinateur === 'ciseaux') ||
+                (choixJoueur === 'papier' && choixOrdinateur === 'pierre') ||
+                (choixJoueur === 'ciseaux' && choixOrdinateur === 'papier')
+            ) {
+                resultat = "Vous avez gagné !";
+            } else {
+                resultat = "L'ordinateur a gagné !";
+            }
+            
+            document.getElementById('result').innerHTML = `
+                Vous avez choisi ${choixJoueur}.<br>
+                L'ordinateur a choisi ${choixOrdinateur}.<br>
+                ${resultat}
+            `;
+        }
+    </script>
+</body>
+</html>
